@@ -1,0 +1,7 @@
+
+ Error Code 2002  ErrorDetail  SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ on Wed 26-06-2024 12:12:54PM in file C:\wamp64\www\Azim\Project\PHP\inc\connection.php at lineno 29
+ Error Code 2002  ErrorDetail  SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ on Wed 26-06-2024 12:12:55PM in file C:\wamp64\www\Azim\Project\PHP\inc\connection.php at lineno 29
+ Error Code 2002  ErrorDetail  SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ on Wed 26-06-2024 12:12:55PM in file C:\wamp64\www\Azim\Project\PHP\inc\connection.php at lineno 29
