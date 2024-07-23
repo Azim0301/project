@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egg Drop Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #87ceeb;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .game-area {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 100px);
+        }
+
+        .egg {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            background-color: #ffeb3b;
+            border-radius: 50% ;
+            cursor: pointer;
+        }
+
+        .controls {
+            margin-bottom: 10px;
+        }
+
+        .score {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stop</button>
+        <div class="score">Score: <span id="score">0</span></div>
+    </div>
+    <div class="game-area">
+        <!-- Eggs will be dynamically added here -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var interval;
+            var score = 0;
+
+            function createEgg() {
+                // Create a new egg element
+                var egg = $('<img src="bomb.webp" height="50px" width="50px" class="egg">');
+                
+                // Set a random starting position on the x-axis
+                var startPosX = Math.random() * ($(window).width() - 50);
+                egg.css('left', startPosX + 'px');
+                
+                // Append the egg to the game area
+                $('.game-area').append(egg);
+
+                // Animate the egg to drop from the top to the bottom of the screen
+                egg.animate({ top: $(window).height() + 'px' }, {
+                    duration: 5000,
+                    easing: 'linear',
+                    step: function(now, fx) {
+                        // Remove the egg if it reaches the bottom of the screen
+                        if (now >= $(window).height()) {
+                            $(this).remove();
+                        }
+                    }
+                });
+
+                // Hide the egg and increment the score when clicked
+                egg.on('click', function() {
+                    $(this).hide();
+                    score++;
+                    $('#score').text(score);
+                });
+            }
+
+            // Start dropping eggs at intervals
+            $('#startButton').on('click', function() {
+                interval = setInterval(createEgg, 1000);
+            });
+
+            // Stop dropping eggs and remove all existing eggs
+            $('#stopButton').on('click', function() {
+                clearInterval(interval);
+                $('.egg').stop().remove(); // Stop and remove all existing eggs
+            });
+        });
+    </script>
+</body>
+</html>
